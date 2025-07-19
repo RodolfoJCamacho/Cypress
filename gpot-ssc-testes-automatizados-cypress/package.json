@@ -1,0 +1,31 @@
+{
+  "name": "prodemge",
+  "version": "1.0.5",
+  "description": "Projeto PRODEMGE Automação",
+  "main": "Relatorio_Testes.js",
+  "author": "Rodolfo Jessé Camacho",
+  "license": "ISC",
+  "scripts": {
+    "test": "npx cypress run",
+    "cypress:dev": "npx cypress run --env ambiente=dev",
+    "cypress:homo": "npx cypress run --env ambiente=hml",
+    "cypress:prepro": "npx cypress run --env ambiente=pre",
+    "cy:open:dev": "npx cypress open --env ambiente=dev",
+    "cy:open:homo": "npx cypress open --env ambiente=hml",
+    "cy:open:prepro": "npx cypress open --env ambiente=pre"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "9.5.0",
+    "cypress": "13.17.0",
+    "cypress-fail-on-network-error": "1.0.4",
+    "cypress-file-upload": "5.0.8",
+    "cypress-mochawesome-reporter": "3.8.2",
+    "cypress-multi-reporters": "1.6.4",
+    "dotenv": "^17.0.1",
+    "faker-br": "0.4.1",
+    "mocha-junit-reporter": "2.2.1"
+  },
+  "dependencies": {
+    "upload": "1.3.2"
+  }
+}

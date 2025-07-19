@@ -1,0 +1,84 @@
+import { elementos } from '../../../support/selectors';
+
+
+describe('', () => {
+    beforeEach(() => {
+        cy.clearLocalStorage();
+        cy.clearCookies();
+        cy.visit('/');
+        cy.get(elementos.versaosistemidp).invoke('text').then(($value) => {
+            cy.log($value)
+        }),
+            cy.wait(2000)
+
+    })    
+       
+        it('12. Vincular Um Papel Usuario CPF Invalido E Em branco ', () =>{
+         cy.get(elementos.loginButtoname).type(Cypress.env('usuarioSegId'))
+        cy.get(elementos.passwordInput).type(Cypress.env('senhaSegId'))
+        cy.get(elementos.loginButton).click();
+        cy.contains(Cypress.env('unidade')).click()
+        cy.get(elementos.closePopup).click();
+
+        cy.wait(2000)
+        cy.get(elementos.versaosistem).invoke('text').then(($value) => {
+            cy.log($value)
+        }),
+
+          
+        cy.contains('Vinculação de Papel').click();
+
+        cy.contains('Aplicação/Módulo:')
+            .siblings()
+            .children()
+            .filter(elementos.aplicacaoButton)
+            .should('be.visible')
+            .click();
+        cy.wait(2000);
+
+        cy.contains('Aplicação/Módulo:')
+            .siblings()
+            .children()
+            .filter(elementos.campoInput).eq(0).type(Cypress.env('aplicacao'))           
+         
+         cy.contains('CPF:')
+         cy.get(elementos.cpfInput).type(Cypress.env('cpfinvalido'))                    
+         cy.contains('Buscar').click()
+         cy.wait(1000)
+         
+//dados em branco 
+
+        cy.get(elementos.menuIcon).click()
+        cy.get(elementos.processotexto).eq(1).click()
+        cy.contains(Cypress.env('criacaosolicitacao')).click()
+        cy.wait(1000)
+        cy.contains(Cypress.env('vinculacaopapelusuario')).click()
+
+            
+        cy.contains('Aplicação/Módulo:')
+            .siblings()
+            .children()
+            .filter(elementos.campoInput).eq(0).type(Cypress.env('aplicacao'))           
+         
+        cy.contains('Buscar').click()
+
+        cy.get(elementos.msgBoxConfirm).click()
+                       
+            
+           });                                
+                         
+                                           
+        }); 
+
+           
+                      
+                             
+            
+                   
+        
+        
+           
+           
+
+   
+   

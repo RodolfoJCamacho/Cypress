@@ -1,0 +1,87 @@
+describe('Sistema SSC Homologação | Suite de Testes Login Idp',() => {
+    beforeEach(() => {
+        cy.visit('https://homologacao.admin.ssc.prodemge.gov.br/') // Acessando ao sistema homologacao SSC
+        cy.wait(2000)
+        })
+
+it(' 1. Acesso ao sistema com Senha Invalida', () =>{
+
+        cy.get('[name=j_username]').type("32513407865");    //LOGIN 
+        cy.get('[name=j_password]').type("sdf2CBQDM0oK1");  // SENHA 
+        cy.get('[class="btn-tema form__btn"]').click();     // CLICANDO DO BOTÃO 
+        cy.wait(1000)
+
+        });
+
+it(' 2. Acesso ao sistema com Senha Valida ', () =>{
+
+       cy.get('[name=j_username]').type("32513407865"); //LOGIN
+       cy.get('[name=j_password]').type("2CBQDM0oK1");  // SENHA
+       cy.get('[class="btn-tema form__btn"]').click();  // CLICANDO DO BOTÃO 
+       cy.wait(5000)  
+    
+        });
+
+it(' 3. Recuperação de senha no idp não confirma a solicitação (voltar) para tela principal', () =>{
+        
+        cy.get('[class="form__link_pass changefont"]').click();  //CLICANDO NO CAMPO QUE RECEBERÁ O CPF
+        cy.get('[class="input-rec z-textbox"]').type("32513407865")  //PREENCHIMENTO COM CPF
+        cy.wait(5000)
+        cy.contains('Voltar').click(); // CLIQUE EM VOLTAR
+        cy.wait(5000)
+        cy.screenshot()
+
+        });                        
+                     
+        it(' 4. Recuperação de senha no idp confirma a solicitação', () =>{
+
+                cy.get('[class="form__link_pass changefont"]').click(); //CLICANDO NO CAMPO QUE RECEBERÁ O CPF
+                cy.get('[class="input-rec z-textbox"]').type("32513407865") //PREENCHIMENTO COM CPF
+                cy.wait(5000)
+                cy.contains('Buscar').click(); // CLIQUE EM BUSCAR 
+                cy.wait(3000)
+                cy.contains('E-mail principal (aut**************@aol.com)').click(); // ESCOLHENDO O E-MAIL NO FLAG
+                cy.wait(3000)
+                cy.contains('Confirmação do e-mail principal').click(); //CLIQUE NO CAMPO 
+                cy.wait(3000)
+                cy.get('[class="input-rec z-textbox z-textbox-invalid"]').type("automacaoprodemge@aol.com"); // PREENCHIMENTO DO CAMPO
+                cy.wait(3000)
+                cy.contains('Solicitar').click(); // CLIQUE NO CAMPO 
+                cy.wait(3000)
+                cy.get('[class="z-messagebox-button z-button"]').click(); //ENVIAR 
+                        
+                        
+                
+        });     
+
+
+
+it(' 5. Fluxo do usuario bloqueado utilizando a opção Voltar', () =>{
+     
+        cy.contains('Usuário Bloqueado?').click() // CLIQUE NO BOTÃO 
+        cy.wait(5000)
+        cy.get('[class="input-rec z-textbox"]').type("32513407865"); //PREECHIMENTO DO CAMPO 
+        cy.wait(5000)
+        cy.contains('Voltar').click() //CLIQUE NO BOTÃO VOLTAR 
+        cy.wait(5000)
+            
+        });
+
+it(' 6. Fluxo do usuario bloqueado utilizando a opção Buscar ', () =>{
+     
+        cy.contains('Usuário Bloqueado?').click() // CLIQUE NO BOTÃO 
+        cy.wait(5000)
+        cy.get('[class="input-rec z-textbox"]').type("32513407865"); // PREENCHIMENTO
+        cy.wait(5000)
+        cy.contains('Buscar').click() //CLIQUE EM BUSCAR 
+        cy.wait(5000) // TEMPO DE RESPOSTAS 
+        cy.screenshot() //PRINT DA TELA 
+        cy.contains('OK').click() //CLIQUE NO BOTÃO OK 
+        cy.wait(5000)
+
+        });
+
+
+        });
+       
+    
