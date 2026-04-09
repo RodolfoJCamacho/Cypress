@@ -1,0 +1,29 @@
+{
+  "name": "gpm8-testes",
+  "version": "1.0.0",
+  "description": "Sistema Prodoc",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress run",
+    "cypress:dev": "npx cypress run --env ambiente=dev",
+    "cypress:hml": "npx cypress run --env ambiente=hml",
+    "cy:open:dev": "npx cypress open --env ambiente=dev",
+    "cy:open:hml": "npx cypress open --env ambiente=hml"
+     },
+  "repository": {
+    "type": "git",
+    "url": "https://git.prodemge.gov.br/prodemge/gpm8-testes"
+  },
+  "author": "Rodolfo Jessé Camacho",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "13.17.0",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-mochawesome-reporter": "^4.0.2",
+    "cypress-multi-reporters": "^2.0.5",
+    "mocha-junit-reporter": "^2.2.1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^10.3.0"
+  }
+}
